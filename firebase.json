@@ -1,5 +1,5 @@
 {
-  "firebase": "piggy-maduma",
+  "firebase": "piggy-dev",
   "public": ".",
   "ignore": [
     "firebase.json",
