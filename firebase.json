@@ -1,0 +1,9 @@
+{
+  "firebase": "piggy-maduma",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
