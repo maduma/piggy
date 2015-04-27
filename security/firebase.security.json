@@ -1,0 +1,9 @@
+{
+  "rules": {
+    // only the authenticated user access (read/write) is own directory
+    "$uid": {
+      ".read": "auth != null && $uid == auth.uid",
+      ".write": "auth != null && $uid == auth.uid"
+    }
+  }
+}
