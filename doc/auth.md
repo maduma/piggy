@@ -41,12 +41,19 @@ __Firebase__ is used as backend. __AngularJS__ is the WEB frontend framework.
 - twitter (use redirection)
 - github (use redirection)
 
-## service
-- isAuthenticated (none: true|false)
-- listAuthModules (none: [(name, none|form|rediret)])
-- signin ((module, none|credential|redirect): true|false)
-- signout (none: none)
-- getUser (none: user)
+## service (pure function style: pass user as arg)
+- isAuthenticated
+  - in: user
+  - out: true|false
+- listAuthModules
+  - in: none
+  - out: name, none|form|redirect
+- signin
+  - in: module, none|credential|redirect
+  - out: null|user
+- signout:
+  - in: user
+  - out: none
 
 ## UI
 - NonAuthenticated mainpage
