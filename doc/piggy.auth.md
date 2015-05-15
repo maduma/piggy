@@ -1,8 +1,6 @@
-# Security Authentification module
+# Authentification module
 
-__Firebase__ is used as backend. __AngularJS__ is the WEB frontend framework.
-
-## requirements
+## Use case
 
             START               
               +                 
@@ -15,9 +13,9 @@ __Firebase__ is used as backend. __AngularJS__ is the WEB frontend framework.
        |Type selection|  <---+  
        +------+-------+      |  
               |            FALSE
-       +------+-------+      |  
-       |ask credential|      |  
-       +------+-------+      |  
+      +-------+-------+      |  
+      |*ask credential|      |  
+      +-------+-------+      |  
               |              |  
     +---------+------------+ |  
     |authenticate the user?+-+  
@@ -32,28 +30,31 @@ __Firebase__ is used as backend. __AngularJS__ is the WEB frontend framework.
               |                 
               +                 
              END                
+             
+    * only for email type
 
-## Authentification modules
+## Authentification
 - anonymous
-- email (use credential form)
+- email (need credential)
 - facebook (use redirection)
 - google (use redirection)
 - twitter (use redirection)
 - github (use redirection)
 
-## service (pure function style: pass user as arg)
-- isAuthenticated
-  - in: user
-  - out: true|false
-- listAuthModules
-  - in: none
-  - out: name, none|form|redirect
+
+## Dependency
+May change the state of the [user](piggy.user.md)
+
+- isAuthenticated: true | false
+- uid: null | authenticated uid
+
+### methods
 - signin
-  - in: module, none|credential|redirect
-  - out: null|user
+  - in: undefined|credential|facebook
+  - out: true|false
 - signout:
-  - in: user
-  - out: none
+  - in: undefined
+  - out: undefined
 
 ## UI
 - NonAuthenticated mainpage

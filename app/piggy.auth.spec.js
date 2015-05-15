@@ -1,41 +1,67 @@
-/* global describe, it, expect, beforeEach, angular, module, inject */
+/* global describe, it, expect, beforeEach, module, inject */
 
 (function() {
 'use strict';
 
-describe('Authentification Module', function() {
+describe('Auth Module - Integrator', function() {
     
-    it('should exists a piggy.auth module', function() {
-        var _module = angular.module('piggy.auth');
-        console.log(_module);
-        expect(_module).toBeDefined();
-    });
-    
-});
-
-describe('Authentification Factory', function() {
-    var _factory;
-    
-    beforeEach(module('piggy.auth'));
-    
-    beforeEach(inject(function(_authFactory_) {
-        _factory = _authFactory_;
+    var authenticator;
+    var user;
+    beforeEach(module('piggy.auth', 'piggy.user'));
+    beforeEach(inject(function(authFactory, userFactory) {
+        authenticator = authFactory;
+        user = userFactory;
     }));
     
-    it('should exists an authFactory in piggy.auth module', function() {
-        expect(_factory).toBeDefined();
+    it('should exists a authFactory that provide an authenticator', function() {
+        expect(authenticator).toBeDefined();
     });
     
-    describe('listAuthModules', function() {
+    it('the authenticator sould have a signin method', function() {
+        expect(typeof authenticator.signin === 'function').toBeTruthy();
+    });
+    
+    it('the authenticator sould have a signout method', function() {
+        expect(typeof authenticator.signout === 'function').toBeTruthy();
+    });
+    
+    describe('Signin', function() {  
         
-        it('should return a list', function() {
-            var result = _factory.listAuthModules();
-            expect(result.length).toBeGreaterThan(1);
+        it('signin should authenticate the user (anonymous)', function() {
+            expect(authenticator.signin()).toBeTruthy();
+            expect(user.isAuthenticated).toBeTruthy();
+            expect(user.uid).toBe('anonymous');
+        });
+        
+        it('signin should authenticate the user (good credential)', function() {
+            var credential = {email: 'maduma@pt.lu', password : 'password'};
+            expect(authenticator.signin(credential)).toBeTruthy();
+            expect(user.isAuthenticated).toBeTruthy();
+            expect(user.uid).toBe('maduma@pt.lu');
+        });
+        
+        it('signin should fail (bad credential)', function() {
+            var credential = {email: 'maduma@pt.lu', password : 'bad'};
+            expect(authenticator.signin(credential)).toBeFalsy();
+            expect(user.isAuthenticated).toBeFalsy();
         });
         
     });
     
+    describe('Signout', function() {  
+        
+        beforeEach(function() {
+            authenticator.signin();
+        });
+        
+        it('the user sould not be authenticated', function() {
+            authenticator.signout();
+            expect(user.isAuthenticated).toBeFalsy();
+        });
+        
+    });
     
 });
+
 
 })();

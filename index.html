@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="piggy">
     <head>
         <meta charset="UTF-8">
         <title>Piggy</title>
     </head>
-    <body>
+    <body ng-controller="DemoController as demo">
       <h1>Piggy</h1>
+      <pre>name: {{demo.name}}</pre>
+      <pre ng-show="demo.user.isAuthenticated">isAuthenticated: True</pre>
+      <pre ng-hide="demo.user.isAuthenticated">isAuthenticated: False</pre>
+      <pre>uid: {{demo.user.uid}}</pre>
+      <button ng-disabled="demo.user.isAuthenticated" ng-click="demo.signin()">Signin</button>
+      <button ng-disabled="!demo.user.isAuthenticated" ng-click="demo.signout()">Signout</button>
+      <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+      <script type="text/javascript" src="bower_components/firebase/firebase.js"></script>
+      <script type="text/javascript" src="bower_components/angularfire/dist/angularfire.js"></script>
+      <script type="text/javascript" src="app/piggy.js"></script>
+      <script type="text/javascript" src="app/piggy.auth.js"></script>
+      <script type="text/javascript" src="app/piggy.user.js"></script>
+      <script type="text/javascript" src="app/piggy.demo.ctrl.js"></script>
     </body>
 </html>
