@@ -19,7 +19,11 @@ function bankFactory($timeout) {
         unLock: unLock,
         lock: lock,
         changeSecret: changeSecret,
-        boxes: [{}]
+        boxes: [{
+            owner: 'Bob',
+            amount: 1,
+            type : 'kiss'
+        }]
     };
     return bank;
     

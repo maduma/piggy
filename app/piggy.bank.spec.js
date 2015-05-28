@@ -1,4 +1,4 @@
-/* global describe, it, expect, beforeEach, module, inject, timeout */
+/* global describe, it, expect, beforeEach, module, inject */
 
 (function() {
 'use strict';
@@ -70,8 +70,23 @@ describe('Bank Module - Entity', function() {
     describe('StrongBox', function() {
         it('should contains a least one box', function() {
             expect(bank.boxes.length).toBeGreaterThan(0);
-            
         });
+        it('the box is identified by and id', function() {
+            var id = 0;
+            expect(bank.boxes[id]).toBeDefined(); 
+        });
+        it('the box have a owner, amount and type of goods', function() {
+            var id = 0;
+            expect(bank.boxes[id].owner).toBeDefined(); 
+            expect(bank.boxes[id].amount).toBeDefined(); 
+            expect(bank.boxes[id].type).toBeDefined(); 
+        });
+        it('can add a other box', function() {
+            var box = { onwer: 'lucie', amount: 12, type: 'euro' };
+            var size = bank.boxes.length;
+            bank.boxes.push(box);
+            expect(bank.boxes.length).toBe(size + 1);
+        })
     });
     
 });

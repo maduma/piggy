@@ -17,3 +17,6 @@ Strongbox are located inside a bank. The bank may contains more than on box.
 - goods
 - locker (and key)
 - timer
+
+## services
+- add a box
