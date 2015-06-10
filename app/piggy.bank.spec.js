@@ -41,6 +41,14 @@ describe('Bank Module - Entity', function() {
         expect(bank.isLocked).toBeFalsy();
     });
     
+    it('is possible to change the secret if is the initial setting', function() {
+        var password = 'newpassword';
+        bank.isInitialCode = true;
+        bank.changeSecret(password);
+        bank.unLock(password);
+        expect(bank.isLocked).toBeFalsy();
+    });
+    
     it('is not possible to change the secret not knowing the old one', function() {
         var password = 'bad';
         var newPassword = 'newpassword';

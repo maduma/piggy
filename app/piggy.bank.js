@@ -16,6 +16,7 @@ function bankFactory($timeout) {
     
     var bank = {
         isLocked: true,
+        isInitialCode: false,
         unLock: unLock,
         lock: lock,
         changeSecret: changeSecret,
@@ -39,7 +40,13 @@ function bankFactory($timeout) {
     }
     
     function changeSecret(oldPassword, newPassword) {
-        if (oldPassword === secret) secret = newPassword;
+        if (typeof newPassword === 'undefined' && bank.isInitialCode) {
+            secret = oldPassword;
+            return;
+        }
+        if (oldPassword === secret) {
+            secret = newPassword;
+        }
     }
 }
 
