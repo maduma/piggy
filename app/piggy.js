@@ -4,6 +4,6 @@
 'use strict';
 
 angular
-    .module('piggy', ['piggy.demo.ctrl']);
+    .module('piggy', ['piggy.route']);
 
 })();

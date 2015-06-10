@@ -1,0 +1,29 @@
+<div class="ma-signin">
+    <p>
+        <input type="text" ng-model="ctrl.newEmail" />
+        <input type="password" ng-model="ctrl.newPassword" />
+        <input type="password" ng-model="ctrl.newPasswordBis" />
+        <button ng-click="ctrl.createEmailAccount()">Create account</button>
+    </p>
+    <p>
+        <input type="text" ng-model="email" />
+        <input type="password" ng-model="password" />
+        <button ng-click="ctrl.emailSignin(email, password)">Signin</button>
+    </p>
+    <p>
+        <button ng-click="ctrl.anonSignin()">Anonymous Signing</button>
+    </p>
+    <p>
+        <button ng-click="ctrl.facebookSignin()">Facebook Signing</button>
+    </p>
+    <hr>
+    newEmail: {{ ctrl.newEmail }}
+    <br>
+    newPassword: {{ ctrl.newPassword }}
+    <br>
+    newPasswordBis: {{ ctrl.newPasswordBis }}
+    <br>
+    email: {{ email }}
+    <br>
+    password: {{ password }}
+</div>

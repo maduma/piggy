@@ -86,7 +86,8 @@ describe('Bank Module - Entity', function() {
             var size = bank.boxes.length;
             bank.boxes.push(box);
             expect(bank.boxes.length).toBe(size + 1);
-        })
+        });
+        
     });
     
 });

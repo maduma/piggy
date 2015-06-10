@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html ng-app="piggy">
-    <head>
-        <meta charset="UTF-8">
-        <title>Piggy</title>
-    </head>
-    <body ng-controller="DemoController as demo">
-      <h1>Piggy</h1>
-      <pre>name: {{demo.name}}</pre>
-      <pre ng-show="demo.user.isAuthenticated">isAuthenticated: True</pre>
-      <pre ng-hide="demo.user.isAuthenticated">isAuthenticated: False</pre>
-      <pre>uid: {{demo.user.uid}}</pre>
-      <button ng-disabled="demo.user.isAuthenticated" ng-click="demo.signin()">Signin</button>
-      <button ng-disabled="!demo.user.isAuthenticated" ng-click="demo.signout()">Signout</button>
-      <script type="text/javascript" src="bower_components/angular/angular.js"></script>
-      <script type="text/javascript" src="bower_components/firebase/firebase.js"></script>
-      <script type="text/javascript" src="bower_components/angularfire/dist/angularfire.js"></script>
-      <script type="text/javascript" src="app/piggy.js"></script>
-      <script type="text/javascript" src="app/piggy.auth.js"></script>
-      <script type="text/javascript" src="app/piggy.user.js"></script>
-      <script type="text/javascript" src="app/piggy.demo.ctrl.js"></script>
-    </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="app/piggy.css">
+    <title>Piggy</title>
+</head>
+
+<body>
+    <div class="ma-header">
+        <h1>Piggy</h1>
+    </div>
+    <div class="ma-main" ng-view></div>
+    <div class="ma-loading" ng-cloak ng-show="isRouteLoading">
+        <h3>L O A D I N G</h3>
+    </div>
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="bower_components/firebase/firebase.js"></script>
+    <script type="text/javascript" src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script type="text/javascript" src="app/piggy.js"></script>
+    <script type="text/javascript" src="app/piggy.route.js"></script>
+    <script type="text/javascript" src="app/piggy.auth.js"></script>
+    <script type="text/javascript" src="app/piggy.user.js"></script>
+    <script type="text/javascript" src="app/piggy.signin.ctrl.js"></script>
+</body>
+
 </html>
