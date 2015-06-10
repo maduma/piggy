@@ -1,9 +1,9 @@
 <div class="ma-signin">
     <p>
-        <input type="text" ng-model="ctrl.newEmail" />
-        <input type="password" ng-model="ctrl.newPassword" />
-        <input type="password" ng-model="ctrl.newPasswordBis" />
-        <button ng-click="ctrl.createEmailAccount()">Create account</button>
+        <input type="text" ng-model="newEmail" />
+        <input type="password" ng-model="newPassword" />
+        <input type="password" ng-model="newPasswordBis" />
+        <button ng-click="ctrl.createEmailAccount(newEmail, newPassword, newPasswordBis)">Create account</button>
     </p>
     <p>
         <input type="text" ng-model="email" />
@@ -17,11 +17,11 @@
         <button ng-click="ctrl.facebookSignin()">Facebook Signing</button>
     </p>
     <hr>
-    newEmail: {{ ctrl.newEmail }}
+    newEmail: {{ newEmail }}
     <br>
-    newPassword: {{ ctrl.newPassword }}
+    newPassword: {{ newPassword }}
     <br>
-    newPasswordBis: {{ ctrl.newPasswordBis }}
+    newPasswordBis: {{ newPasswordBis }}
     <br>
     email: {{ email }}
     <br>

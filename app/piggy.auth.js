@@ -13,7 +13,8 @@ authFactory.$inject = ['userFactory'] ;
 function authFactory(user) {
     return {
         signin: signin,
-        signout: signout
+        signout: signout,
+        createAccount : createAccount
     };
     
     function signin(strategy) {
@@ -26,6 +27,10 @@ function authFactory(user) {
             user.isAuthenticated = true;
             user.uid = 'maduma@pt.lu';
             return true;
+        } else if (strategy.provider === 'facebook') {
+            user.isAuthenticated = true;
+            user.uid = 'facebook0';
+            return true;
         }
         return false;
         
@@ -34,6 +39,12 @@ function authFactory(user) {
     function signout() {
         user.isAuthenticated = false;
         return;
+    }
+    
+    function createAccount(account) {
+        user.isAuthenticated = true;
+        user.uid = account.email;
+        return true;
     }
 }
     

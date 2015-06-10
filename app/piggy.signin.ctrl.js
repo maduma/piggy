@@ -9,9 +9,16 @@ angular
     
 signinController.$inject = ['$location', 'authFactory'];    
 function signinController($location, authenticator) {
-    this.createEmailAccount = function() {
-        console.log('createEmailAccount');
+    
+    this.createEmailAccount = function(email, password, passwordBis) {
+        console.log('createEmailAccount', email, password, passwordBis);
+        if (password === passwordBis) {
+            if (authenticator.createAccount(email, password)) {
+                $location.path('/');
+            }
+        }
     };
+    
     this.emailSignin = function(email, password) {
         console.log('emailSignin', email, password);
         var credential = {email: email, password: password};
@@ -19,14 +26,19 @@ function signinController($location, authenticator) {
             $location.path('/');
         }
     };
+    
     this.anonSignin = function() {
         console.log('anonSignin');
         if (authenticator.signin()) {
             $location.path('/');
         }
     };
+    
     this.facebookSignin = function() {
         console.log('facebookSignin');
+        if (authenticator.signin({provider: 'facebook'})) {
+            $location.path('/');
+        }
     };
 }
 

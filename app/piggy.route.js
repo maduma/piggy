@@ -9,8 +9,6 @@ angular
     .run(routeEvent);
     
 routeConfig.$inject = ['$routeProvider'];
-//, '$q', '$timeout', '$location', 'userFactory'
-    
 function routeConfig($routeProvider) {
     $routeProvider
     .when('/', {
@@ -24,13 +22,12 @@ function routeConfig($routeProvider) {
         resolve: { condition: isNotAuthenticated }
     })
     .otherwise({
-        template: 'Route Error'
+        redirectTo: '/'
     });
 }
     
 isAuthenticated.$inject = ['$q', '$timeout', '$location', 'userFactory'];
 function isAuthenticated($q, $timeout, $location, user) {
-    console.log('toto 1');
     var deferred = $q.defer();
     $timeout(function() {
         if (user.isAuthenticated) {
@@ -45,7 +42,6 @@ function isAuthenticated($q, $timeout, $location, user) {
 
 isNotAuthenticated.$inject = ['$q', '$timeout', '$location', 'userFactory'];
 function isNotAuthenticated($q, $timeout, $location, user) {
-    console.log('toto 2');
     var deferred = $q.defer();
     $timeout(function() {
         if (!user.isAuthenticated) {
@@ -63,23 +59,23 @@ routeEvent.$inject = ['$rootScope'];
 function routeEvent($rootScope) {
     $rootScope.isRouteLoading = false;
     
-    $rootScope.$on('$routeChangeStart', function() {
-        console.log('$routeChangeStart');
+    $rootScope.$on('$routeChangeStart', function(event, route) {
+        //console.log('$routeChangeStart', event, route);
         $rootScope.isRouteLoading = true;
     });
     
-    $rootScope.$on('$routeChangeSuccess', function() {
-        console.log('$routeChangeSuccess');
+    $rootScope.$on('$routeChangeSuccess', function(event, route) {
+        //console.log('$routeChangeSuccess', event, route);
         $rootScope.isRouteLoading = false;
     });
     
-    $rootScope.$on('$routeChangeError', function(a, b, c, d) {
-        console.log('$routeChangeError', a, b, c, d);
+    $rootScope.$on('$routeChangeError', function(event, route) {
+        //console.log('$routeChangeError', event, route);
         $rootScope.isRouteLoading = false;
     });
     
-    $rootScope.$on('$routeUpdate', function() {
-        console.log('$routeUpdate');
+    $rootScope.$on('$routeUpdate', function(event, route, a) {
+        //console.log('$routeUpdate', event, route, a);
     });
 }
 

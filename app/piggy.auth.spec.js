@@ -46,6 +46,13 @@ describe('Auth Module - Integrator', function() {
             expect(user.isAuthenticated).toBeFalsy();
         });
         
+        it('signin should authenticate the user with facebook', function() {
+            var credential = {provider: 'facebook'};
+            expect(authenticator.signin(credential)).toBeTruthy();
+            expect(user.isAuthenticated).toBeTruthy();
+            expect(user.uid).toBe('facebook0');
+        });
+        
     });
     
     describe('Signout', function() {  
@@ -59,6 +66,15 @@ describe('Auth Module - Integrator', function() {
             expect(user.isAuthenticated).toBeFalsy();
         });
         
+    });
+    
+    describe('CreateAccount', function() {
+        it('should be possible to create a account', function() {
+            var account = {email: 'toto@pt.lu', password: 'password'};
+            expect(authenticator.createAccount(account)).toBeTruthy();
+            expect(user.isAuthenticated).toBeTruthy();
+            expect(user.uid).toBe('toto@pt.lu');
+        });
     });
     
 });
