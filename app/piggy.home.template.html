@@ -1,0 +1,5 @@
+<p ng-repeat="box in ctrl.boxes">
+    {{ box }}
+    <button ng-click="ctrl.remove($index)">Remove</button>
+</p>
+<button ng-click="ctrl.addBox()">Add</button>

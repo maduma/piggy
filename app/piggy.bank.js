@@ -29,10 +29,14 @@ function bankFactory($timeout) {
     return bank;
     
     function unLock(password) {
-        if (password === secret) bank.isLocked = false;
-        return $timeout(function() {
-            bank.isLocked = true;            
-        }, timer);
+        if (password === secret) {
+            bank.isLocked = false;
+            $timeout(function() {
+                bank.isLocked = true;            
+            }, timer);
+            return true;
+        }
+        return false;
     }
     
     function lock() {
@@ -42,11 +46,13 @@ function bankFactory($timeout) {
     function changeSecret(oldPassword, newPassword) {
         if (typeof newPassword === 'undefined' && bank.isInitialCode) {
             secret = oldPassword;
-            return;
+            return true;
         }
         if (oldPassword === secret) {
             secret = newPassword;
+            return true;
         }
+        return false;
     }
 }
 

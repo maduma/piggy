@@ -23,20 +23,20 @@ describe('Bank Module - Entity', function() {
     
     it('the bank may be unlocked', function() {
         var password = 'password';
-        bank.unLock(password);
+        expect(bank.unLock(password)).toBeTruthy();
         expect(bank.isLocked).toBeFalsy();
     });
     
     it('the bank cannot be unLock with a bad secret', function() {
         var password = 'bad';
-        bank.unLock(password);
+        expect(bank.unLock(password)).toBeFalsy();
         expect(bank.isLocked).toBeTruthy();
     });
     
     it('is possible to change the secret knowing the old one', function() {
         var password = 'password';
         var newPassword = 'newpassword';
-        bank.changeSecret(password, newPassword);
+        expect(bank.changeSecret(password, newPassword)).toBeTruthy();
         bank.unLock(newPassword);
         expect(bank.isLocked).toBeFalsy();
     });
@@ -44,7 +44,7 @@ describe('Bank Module - Entity', function() {
     it('is possible to change the secret if is the initial setting', function() {
         var password = 'newpassword';
         bank.isInitialCode = true;
-        bank.changeSecret(password);
+        expect(bank.changeSecret(password)).toBeTruthy();
         bank.unLock(password);
         expect(bank.isLocked).toBeFalsy();
     });
@@ -52,14 +52,14 @@ describe('Bank Module - Entity', function() {
     it('is not possible to change the secret not knowing the old one', function() {
         var password = 'bad';
         var newPassword = 'newpassword';
-        bank.changeSecret(password, newPassword);
+        expect(bank.changeSecret(password, newPassword)).toBeFalsy();
         bank.unLock(newPassword);
         expect(bank.isLocked).toBeTruthy();
     });
     
     it('is possible to lock back the bank', function() {
         var password = 'password';
-        bank.unLock(password);
+        expect(bank.unLock(password)).toBeTruthy();
         expect(bank.isLocked).toBeFalsy();
         bank.lock();
         expect(bank.isLocked).toBeTruthy();

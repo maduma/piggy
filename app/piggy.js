@@ -4,6 +4,6 @@
 'use strict';
 
 angular
-    .module('piggy', ['piggy.route']);
+    .module('piggy', ['piggy.route', 'piggy.debug']);
 
 })();

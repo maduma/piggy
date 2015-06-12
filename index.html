@@ -11,27 +11,39 @@
 <body>
     <div class="ma-header">
         <h1>Piggy</h1>
-        <pre>
-            user.uid: {{ user.uid }}
-            user.isAuthenticated: {{ user.isAuthenticated }}
-            bank.isLocked: {{ bank.isLocked }}
-            bank.isInitialCode: {{ bank.isInitialCode }}
-        </pre>
+        <p>
+            <a href="/#/">Main</a> -
+            <a href="/#/setdigicode">set digicode</a> -
+            <a href="/#/digicode?caller=/">digicode</a>
+        </p>
     </div>
     <div class="ma-main" ng-view></div>
     <div class="ma-loading" ng-cloak ng-show="isRouteLoading">
         <h3>L O A D I N G</h3>
     </div>
+    <hr>
+    <pre>
+       user.uid: {{ user.uid }}
+       user.isAuthenticated: {{ user.isAuthenticated }}
+       bank.isLocked: {{ bank.isLocked }}
+       bank.isInitialCode: {{ bank.isInitialCode }}
+    </pre>
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
     <script type="text/javascript" src="bower_components/firebase/firebase.js"></script>
     <script type="text/javascript" src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
     <script type="text/javascript" src="app/piggy.js"></script>
     <script type="text/javascript" src="app/piggy.route.js"></script>
+    <script type="text/javascript" src="app/piggy.pageloading.js"></script>
     <script type="text/javascript" src="app/piggy.auth.js"></script>
     <script type="text/javascript" src="app/piggy.user.js"></script>
     <script type="text/javascript" src="app/piggy.bank.js"></script>
     <script type="text/javascript" src="app/piggy.signin.ctrl.js"></script>
+    <script type="text/javascript" src="app/piggy.digicode.ctrl.js"></script>
+    <script type="text/javascript" src="app/piggy.setdigicode.ctrl.js"></script>
+    <script type="text/javascript" src="app/piggy.home.ctrl.js"></script>
+    <script type="text/javascript" src="app/piggy.debug.js"></script>
 </body>
 
 </html>

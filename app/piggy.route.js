@@ -4,15 +4,18 @@
 'use strict';
 
 angular
-    .module('piggy.route', ['ngRoute', 'piggy.user', 'piggy.signin', 'piggy.bank'])
-    .config(routeConfig)
-    .run(routeEvent);
+    .module('piggy.route', ['ngRoute', 'piggy.pageloading',
+    'piggy.user', 'piggy.signin', 'piggy.bank', 'piggy.page.digicode',
+    'piggy.page.setdigicode', 'piggy.page.home'])
+    .config(routeConfig);
     
 routeConfig.$inject = ['$routeProvider'];
 function routeConfig($routeProvider) {
     $routeProvider
     .when('/', {
-        template: 'Home Page <a href="/#/setdigicode">set digicode</a>',
+        templateUrl: 'app/piggy.home.template.html', 
+        controller: 'homeController',
+        controllerAs: 'ctrl',
         resolve: {condition: isAuthenticated}
     })
     .when('/signin', {
@@ -22,14 +25,15 @@ function routeConfig($routeProvider) {
         resolve: {condition: isNotAuthenticated}
     })
     .when('/setdigicode', {
-        template: 'set digicode',
-        resolve: {
-            condition1: isAuthenticated,
-            condition2: isReadWrite
-        }
+        templateUrl: 'app/piggy.setdigicode.template.html', 
+        controller: 'setDigicodeController',
+        controllerAs: 'ctrl',
+        resolve: {condition: isAuthenticated}
     })
     .when('/digicode', {
-        template: 'digicode',
+        templateUrl: 'app/piggy.digicode.template.html',
+        controller: 'digicodeController',
+        controllerAs: 'ctrl',
         resolve: {condition: isAuthenticated}
     })
     .otherwise({
@@ -67,43 +71,17 @@ function isNotAuthenticated($q, $timeout, $location, user) {
 
 isReadWrite.$inject = ['$q', '$timeout', '$location', 'bankFactory'];
 function isReadWrite($q, $timeout, $location, bank) {
+    var targetPath = $location.path();
     var deferred = $q.defer();
     $timeout(function() {
         if (!bank.isLocked || bank.isInitalCode) {
             deferred.resolve(true);
         } else {
             deferred.reject();
-            $location.path('/digicode');
+            $location.path('/digicode').search({caller: targetPath});
         }
     }, 1000);
     return deferred.promise;
-}
-
-// add isRouteLoading on rootScope for displaying loading page
-routeEvent.$inject = ['$rootScope', 'userFactory', 'bankFactory'];
-function routeEvent($rootScope, user, bank) {
-    $rootScope.isRouteLoading = false;
-    $rootScope.user = user;
-    $rootScope.bank = bank;
-    
-    $rootScope.$on('$routeChangeStart', function(event, route) {
-        //console.log('$routeChangeStart', event, route);
-        $rootScope.isRouteLoading = true;
-    });
-    
-    $rootScope.$on('$routeChangeSuccess', function(event, route) {
-        //console.log('$routeChangeSuccess', event, route);
-        $rootScope.isRouteLoading = false;
-    });
-    
-    $rootScope.$on('$routeChangeError', function(event, route) {
-        //console.log('$routeChangeError', event, route);
-        $rootScope.isRouteLoading = false;
-    });
-    
-    $rootScope.$on('$routeUpdate', function(event, route, a) {
-        //console.log('$routeUpdate', event, route, a);
-    });
 }
 
 })();
