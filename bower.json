@@ -17,7 +17,8 @@
     "angular": "~1.4.0",
     "angular-route": "~1.4.0",
     "angularfire": "~1.0.0",
-    "angular-digicode": "*"
+    "angular-digicode": "*",
+    "angular-piggybank": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0",

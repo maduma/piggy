@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="app/piggy.css">
+    <link rel="stylesheet" href="bower_components/angular-piggybank/angular-piggybox.css">
     <title>Piggy</title>
 </head>
 
 <body>
     <div class="ma-header">
-        <h1>Piggy</h1>
         <p>
+            P I G G Y -
             <a href="/#/">Main</a> -
             <a href="/#/setdigicode">set digicode</a> -
             <a href="/#/digicode?caller=/">digicode</a>
@@ -22,17 +23,22 @@
         <h3>L O A D I N G</h3>
     </div>
     <hr>
-    <pre>
-       user.uid: {{ user.uid }}
-       user.isAuthenticated: {{ user.isAuthenticated }}
-       bank.isLocked: {{ bank.isLocked }}
+    <div>
+       user.uid: {{ user.uid || '-' }} |
+       user.isAuthenticated: {{ user.isAuthenticated }} |
+       bank.isLocked: {{ bank.isLocked }} |
        bank.isInitialCode: {{ bank.isInitialCode }}
-    </pre>
+    </div>
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
     <script type="text/javascript" src="bower_components/firebase/firebase.js"></script>
     <script type="text/javascript" src="bower_components/angularfire/dist/angularfire.js"></script>
     <script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script type="text/javascript" src="bower_components/angular-piggybank/angular-piggybank.js"></script>
+    <script type="text/javascript" src="bower_components/angular-piggybank/angular-piggybox.js"></script>
     <script type="text/javascript" src="app/piggy.js"></script>
     <script type="text/javascript" src="app/piggy.route.js"></script>
     <script type="text/javascript" src="app/piggy.pageloading.js"></script>

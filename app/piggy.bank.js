@@ -23,6 +23,7 @@ function bankFactory($timeout) {
         boxes: [{
             owner: 'Bob',
             amount: 1,
+            image: '',
             type : 'kiss'
         }]
     };

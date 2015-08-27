@@ -13,17 +13,18 @@ angular
 homeController.$inject = ['bankFactory'];    
 function homeController(bank) {
     var self = this;
-    this.boxes = bank.boxes;
+    this.bank = bank;
     this.addBox = function() {
-        self.boxes.push({
+        self.bank.boxes.push({
             owner: _.shuffle(names)[0],
-            anount: 0,
+            amount: 0,
+            image: '',
             type: _.shuffle(type)[0]
         });
     };
     this.remove = function(index) {
         console.log(index);
-        self.boxes.splice(index, 1);
+        self.bank.boxes.splice(index, 1);
     }
 }
 

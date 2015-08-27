@@ -17,13 +17,9 @@
         <button ng-click="ctrl.facebookSignin()">Facebook Signing</button>
     </p>
     <hr>
-    newEmail: {{ newEmail }}
-    <br>
-    newPassword: {{ newPassword }}
-    <br>
-    newPasswordBis: {{ newPasswordBis }}
-    <br>
-    email: {{ email }}
-    <br>
-    password: {{ password }}
+    newEmail: {{ newEmail || '-' }} |
+    newPassword: {{ newPassword || '-' }} |
+    newPasswordBis: {{ newPasswordBis || '-' }} |
+    email: {{ email || '-' }} |
+    password: {{ password || '-' }}
 </div>

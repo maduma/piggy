@@ -1,4 +1,6 @@
-<p ng-repeat="box in ctrl.boxes">
+<ma-piggybank rw="!ctrl.bank.isLocked" boxes="ctrl.bank.boxes"></ma-piggybank>
+<hr>
+<p ng-repeat="box in ctrl.bank.boxes">
     {{ box }}
     <button ng-click="ctrl.remove($index)">Remove</button>
 </p>
